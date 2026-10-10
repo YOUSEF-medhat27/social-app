@@ -1,18 +1,35 @@
 
-import { Avatar, Button } from "@heroui/react";
+import { Avatar, Button, Dropdown, Label } from "@heroui/react";
 import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { ClipLoader } from "react-spinners";
 import { Link } from "react-router-dom";
-
+import ChangePassword from "../ChangePassword/ChangePassword.jsx";
+import { useState } from "react";
 
 
 
 export default function Profile() {
 
-    const Name = localStorage.getItem("Name")
-    const username = localStorage.getItem("username")
+    let [showChangePassword, setShowChangePassword] = useState(false);
+    
+    function getProfile() {
+        return axios.get("https://route-posts.routemisr.com/users/profile-data", {
+            headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+        });
+    }
+
+    let { data: profileData } = useQuery({
+        queryKey: ["profile"],
+        queryFn: getProfile,
+    });
+
+    let user = profileData?.data?.data?.user;
+    let Name = user?.name;
+    let username = user?.username;
+
+
 
 
     function getMyPosts() {
@@ -25,7 +42,7 @@ export default function Profile() {
         });
     }
 
-    const { data, isLoading } = useQuery({
+    let { data, isLoading } = useQuery({
         queryKey: ["myPosts", username],
         queryFn: getMyPosts
     });
@@ -37,8 +54,8 @@ export default function Profile() {
             </div>);
     }
 
-    const posts = data?.data?.data?.posts || [];
-    const myPosts = posts.filter(function (post) {
+    let posts = data?.data?.data?.posts || [];
+    let myPosts = posts.filter(function (post) {
         return post.user.username === username;
     });
 
@@ -97,11 +114,23 @@ export default function Profile() {
 
 
 
-                            <Button
-                                className="mt-5 md:mt-0 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-7"
-                            >
-                                Edit Profile
-                            </Button>
+                            <Dropdown>
+                                <Button className="mt-5 md:mt-0 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-7">
+                                    Edit Profile
+                                </Button>
+
+                                <Dropdown.Popover>
+                                    <Dropdown.Menu
+                                        onAction={(key) => {
+                                            if (key === "change-password") setShowChangePassword(true);
+                                        }}
+                                    >
+                                        <Dropdown.Item id="change-password" textValue="Change password">
+                                            <Label>Change password</Label>
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown.Popover>
+                            </Dropdown>
 
                         </div>
 
@@ -166,27 +195,6 @@ export default function Profile() {
 
 
                 <div className="bg-white mt-6 rounded-xl shadow-sm border border-gray-200">
-
-                    <div className="flex items-center gap-8 px-6 border-b border-gray-200">
-
-                        <button className="relative py-4 text-blue-600 font-semibold">
-
-                            Posts
-
-                            <span className="absolute bottom-0 left-0 right-0 h-.5 bg-blue-600 rounded-t"></span>
-
-                        </button>
-
-
-                        <button className="py-4 text-gray-500 hover:text-blue-600 transition">
-
-                            Saved
-
-                        </button>
-
-                    </div>
-
-
 
                     <div className="bg-white mt-6 rounded-xl shadow-sm border border-gray-200">
                         <div className="flex items-center gap-8 px-6 border-b border-gray-200">
@@ -279,6 +287,9 @@ export default function Profile() {
             </div>
 
         </div>
+        {showChangePassword && (
+            <ChangePassword onClose={() => setShowChangePassword(false)} />
+        )}
     </>
 
 

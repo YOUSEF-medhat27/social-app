@@ -83,25 +83,25 @@ export default function Register() {
             <form onSubmit={handleSubmit(signup)} className="w-[60%] p-10 shadow-2xl mx-auto" >
 
                 {/* {name} */}
-                <Input id="name" {...register("name")} type="text" fullWidth placeholder="ENTER UR NAME" variant="secondary" className="mb-4" />
+                <Input id="name" {...register("name")} type="text" fullWidth placeholder="Enter Your Name" variant="secondary" className="mb-4" />
                 {touchedFields?.name && errors?.name && <p className="mb-5 text-danger ">{errors.name?.message}</p>}
                 {/* {username} */}
-                <Input id="username" {...register("username")} type="text" fullWidth placeholder="ENTER UR UserName" variant="secondary" className="mb-4" />
+                <Input id="username" {...register("username")} type="text" fullWidth placeholder="Enter Your UserName" variant="secondary" className="mb-4" />
                 {touchedFields?.username && errors?.username && <p className="mb-5 text-danger ">{errors.username?.message}</p>}
                 {/* {email} */}
-                <Input id="email" {...register("email")} type="email" fullWidth placeholder="ENTER UR Email" variant="secondary" className="mb-4" />
+                <Input id="email" {...register("email")} type="email" fullWidth placeholder="Enter Your Email" variant="secondary" className="mb-4" />
                 {touchedFields?.email && errors?.email && <p className="mb-5 text-danger ">{errors.email?.message}</p>}
 
                 {/* {password} */}
-                <Input id="password" {...register("password")} type="password" fullWidth placeholder="ENTER UR PASSWORD" variant="secondary" className="mb-4" />
+                <Input id="password" {...register("password")} type="password" fullWidth placeholder="Enter Your Password" variant="secondary" className="mb-4" />
                 {touchedFields?.password && errors?.password && <p className="mb-5 text-danger ">{errors.password?.message}</p>}
 
                 {/* {rePassword} */}
-                <Input id="rePassword" {...register("rePassword")} type="password" fullWidth placeholder="ENTER UR RePASSWORD" variant="secondary" className="mb-4" />
+                <Input id="rePassword" {...register("rePassword")} type="password" fullWidth placeholder="Enter Your RePassword" variant="secondary" className="mb-4" />
                 {touchedFields?.rePassword && errors?.rePassword && <p className="mb-5 text-danger ">{errors.rePassword?.message}</p>}
 
                 {/* {dateOfBirth} */}
-                <Input id="dateOfBirth" {...register("dateOfBirth")} type="date" fullWidth placeholder="ENTER UR NAME" variant="secondary" className="mb-4" />
+                <Input id="dateOfBirth" {...register("dateOfBirth")} type="date" fullWidth placeholder="Enter Your DateofBirth" variant="secondary" className="mb-4" />
                 {touchedFields?.dateOfBirth && errors?.dateOfBirth && <p className="mb-5 text-danger ">{errors.dateOfBirth?.message}</p>}
 
                 {/* {gender} */}

@@ -66,11 +66,11 @@ export default function Login() {
             <form onSubmit={handleSubmit(signin)} className="w-[60%] p-10 shadow-2xl mx-auto" >
 
                 {/* {email} */}
-                <Input id="email" {...register("email")} type="email" fullWidth placeholder="ENTER UR Email" variant="secondary" className="mb-4" />
+                <Input id="email" {...register("email")} type="email" fullWidth placeholder="Enter Your Email" variant="secondary" className="mb-4" />
                 {touchedFields?.email && errors?.email && <p className="mb-5 text-danger ">{errors.email?.message}</p>}
 
                 {/* {password} */}
-                <Input id="password" {...register("password")} type="password" fullWidth placeholder="ENTER UR PASSWORD" variant="secondary" className="mb-4" />
+                <Input id="password" {...register("password")} type="password" fullWidth placeholder="Enter Your Password" variant="secondary" className="mb-4" />
                 {touchedFields?.password && errors?.password && <p className="mb-5 text-danger ">{errors.password?.message}</p>}
 
 

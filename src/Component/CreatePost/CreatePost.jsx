@@ -100,7 +100,7 @@ export default function CreatePost() {
 
     return (
 
-        <div className="mt-6 bg-white w-[60%] mx-auto border border-blue-100 rounded-2xl p-5 shadow-sm">
+        <div className="mt-6 bg-white w-[80%] mx-auto border border-blue-100 rounded-2xl p-5 shadow-sm">
 
             <h3 className="text-lg font-semibold text-blue-700 mb-4">
                 Add a post
